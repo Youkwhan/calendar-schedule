@@ -4,7 +4,8 @@ import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
-	const { googleSignIn } = UserAuth();
+	const { googleSignIn, user } = UserAuth();
+	const navigate = useNavigate();
 
 	const handleGoogleSignIn = async () => {
 		try {
@@ -13,6 +14,12 @@ const Signin = () => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		if (user != null) {
+			navigate("/account");
+		}
+	}, [user]);
 
 	return (
 		<div>
