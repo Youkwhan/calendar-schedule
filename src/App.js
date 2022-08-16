@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Protected from "./components/Protected";
 import { AuthContextProvider } from "./context/AuthContext";
-
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Account from "./pages/Account";
@@ -17,14 +15,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Home />} />
 					<Route path="/signin" element={<Signin />} />
-					<Route
-						path="/account"
-						element={
-							<Protected>
-								<Account />
-							</Protected>
-						}
-					/>
+					<Route path="/account" element={<Account />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</AuthContextProvider>
