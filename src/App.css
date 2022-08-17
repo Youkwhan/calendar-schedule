@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+	/* font-family: ; */
+}
+
+.navbar {
+	width: 100%;
+	padding: 24px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f6f6f6;
+}
+.navbar .rightside {
+	display: flex;
+	font-weight: 600;
+	font-size: 16px;
+	margin-right: 24px;
+	align-items: center;
+}
+
+.navbar .rightside .navlink {
+	text-decoration: underline;
+	color: rgb(0, 0, 0);
+	padding: 10px;
+}
+
+.navbar .rightside .btn {
+	text-decoration: underline;
+	border: none;
+	background: none;
+	font-weight: bold;
+	margin-right: 40px;
+}

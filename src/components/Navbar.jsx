@@ -14,15 +14,26 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="flex justify-between bg-gray-200 w-full p-4">
-			<h1 className="text-center text-2xl font-bold">
-				Firebase Google Auth & Context
-			</h1>
-			{user?.displayName ? (
-				<button onClick={handleSignOut}>Logout</button>
-			) : (
-				<Link to="/signin">Sign in</Link>
-			)}
+		<div className="navbar">
+			<div className="leftside">
+				<h1>Calendar Scheduling</h1>
+			</div>
+			<div className="rightside">
+				<Link className="navlink" to="/">
+					HOME
+				</Link>
+
+				{user?.displayName ? (
+					<>
+					<h4 className="navlink">{user.displayName}</h4>
+					<button className="btn btn-danger btn-lg" onClick={handleSignOut}>
+						LOGOUT
+					</button>
+					</>
+				) : (
+					<Link className="navlink" to="/signin">SIGNIN</Link>
+				)}
+			</div>
 		</div>
 	);
 };

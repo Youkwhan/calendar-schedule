@@ -7,7 +7,7 @@ import Signin from "./pages/Signin";
 import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Protected from "./components/Protected";
-
+import "./App.css"
 function App() {
 	return (
 		<div>
