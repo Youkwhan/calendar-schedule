@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
+import Protected from "./components/Protected";
 
 function App() {
 	return (
@@ -15,7 +16,14 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Home />} />
 					<Route path="/signin" element={<Signin />} />
-					<Route path="/account" element={<Account />} />
+					<Route
+						path="/account"
+						element={
+							<Protected>
+								<Account />
+							</Protected>
+						}
+					/>
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</AuthContextProvider>
