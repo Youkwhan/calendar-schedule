@@ -7,28 +7,30 @@ import Signin from "./pages/Signin";
 import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Protected from "./components/Protected";
-import "./App.css"
+import Contact from "./components/Contact";
+import "./App.css";
 function App() {
-	return (
-		<div>
-			<AuthContextProvider>
-				<Navbar />
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route path="/signin" element={<Signin />} />
-					<Route
-						path="/account"
-						element={
-							<Protected>
-								<Account />
-							</Protected>
-						}
-					/>
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-			</AuthContextProvider>
-		</div>
-	);
+  return (
+    <div>
+      <AuthContextProvider>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route
+            path="/account"
+            element={
+              <Protected>
+                <Account />
+              </Protected>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </AuthContextProvider>
+    </div>
+  );
 }
 
 export default App;
