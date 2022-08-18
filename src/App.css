@@ -1,7 +1,6 @@
 * {
-	text-align: center;
 	margin: 0;
-	padding: 0;
+	padding: 0;	
 	/* font-family: ; */
 }
 
@@ -35,3 +34,15 @@
 	margin-right: 40px;
 }
 
+.container {
+	font-family:'Roboto';
+	margin:30px auto 0; 
+	display:block; 
+	padding:10px 50px 50px;
+}
+
+.calendar {
+	display: block;
+	height: 100%;
+	
+}

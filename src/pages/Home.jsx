@@ -51,10 +51,11 @@ const Home = () => {
 						end: doc.get("end").toDate(),
 					};
 				});
+				console.log(array);
 				setAllEvent([...array]);
 			}
 		});
-		return unsub
+		return unsub;
 	}, []);
 
 	const handleAddEvent = () => {
@@ -64,10 +65,13 @@ const Home = () => {
 	};
 
 	return (
-		<div>
-			<h1>Calendar</h1>
-			<h2>Add New Event</h2>
-			<div className="add-event">
+		<div className="container">
+			<div className="title">
+				<h1>Calendar</h1>
+				<h2>Add New Event</h2>
+			</div>
+			<div className="events">
+				<h4>Meeting Time</h4>
 				<input
 					type="text"
 					placeholder="Add Title"
@@ -79,24 +83,30 @@ const Home = () => {
 					placeholderText="Start Date"
 					style={{ marginRight: "10px" }}
 					selected={newEvent.start}
+					showTimeSelect
+					dateFormat="MMMM d, yyyy h:mm aa"
 					onChange={(start) => setNewEvent({ ...newEvent, start: start })}
 				/>
 				<DatePicker
 					placeholderText="End Date"
 					selected={newEvent.end}
+					showTimeSelect
+					dateFormat="MMMM d, yyyy h:mm aa"
 					onChange={(end) => setNewEvent({ ...newEvent, end: end })}
 				/>
 				<button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
 					Add Event
 				</button>
 			</div>
-			<Calendar
-				localizer={localizer}
-				events={allEvent}
-				startAccessor="start"
-				endAccessor="end"
-				style={{ height: 500, margin: "50px" }}
-			/>
+			<div className="calendar">
+				<Calendar
+					localizer={localizer}
+					events={allEvent}
+					startAccessor="start"
+					endAccessor="end"
+					style={{ height: 500, margin: "50px" }}
+				/>
+			</div>
 		</div>
 	);
 };
