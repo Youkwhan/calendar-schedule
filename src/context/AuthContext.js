@@ -43,3 +43,6 @@ export const AuthContextProvider = ({ children }) => {
 export const UserAuth = () => {
 	return useContext(AuthContext);
 };
+
+// Any component we wrap AuthContextProvider around is going to have access to the "values"
+// children is basically a prop of all the components wrapped around this context provider
