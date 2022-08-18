@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -7,6 +7,9 @@ import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { db } from "../firebase-config";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { UserAuth } from "../context/AuthContext";
 
 const locales = {
 	"en-US": require("date-fns/locale/en-US"),
@@ -20,35 +23,28 @@ const localizer = dateFnsLocalizer({
 	locales,
 });
 
-//THE MONTHS ARE COUNTED STARTING FROM 0
-const events = [
-	{
-		title: "Big Meeting",
-		allDay: true,
-		start: new Date(2022, 8, 0),
-		end: new Date(2022, 8, 0),
-	},
-	{
-		title: "Vacation",
-		start: new Date(2022, 7, 17),
-		end: new Date(2022, 7, 17),
-	},
-];
 
 const Home = () => {
+	const { user } = UserAuth();
+
 	const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-	const [allEvent, setAllEvent] = useState(events);
+	const [allEvent, setAllEvent] = useState();
 
 	const handleAddEvent = () => {
 		// push the new event to the allEvent array
 		setAllEvent([...allEvent, newEvent]);
+		addDoc(collection(db,"meeting-dates"), newEvent)
 	};
+
+	useEffect(()=>{
+		//mounts
+	})
 
 	return (
 		<div>
 			<h1>Calendar</h1>
 			<h2>Add New Event</h2>
-			<div>
+			<div className="add-event">
 				<input
 					type="text"
 					placeholder="Add Title"
