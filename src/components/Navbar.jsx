@@ -25,7 +25,7 @@ const Navbar = () => {
 
 				{user?.displayName ? (
 					<>
-					<h4 className="navlink">{user.displayName}</h4>
+					<Link className="navlink" to="/account">{user.displayName}</Link>
 					<button className="btn btn-danger btn-lg" onClick={handleSignOut}>
 						LOGOUT
 					</button>

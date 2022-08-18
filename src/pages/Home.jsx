@@ -8,8 +8,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { db } from "../firebase-config";
-import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, query, onSnapshot } from "firebase/firestore";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const locales = {
 	"en-US": require("date-fns/locale/en-US"),
@@ -23,22 +24,44 @@ const localizer = dateFnsLocalizer({
 	locales,
 });
 
-
 const Home = () => {
 	const { user } = UserAuth();
+	const navigate = useNavigate();
 
+	// Adding an event
 	const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-	const [allEvent, setAllEvent] = useState();
+	const [allEvent, setAllEvent] = useState([]);
+
+	useEffect(() => {
+		if (!user) {
+			navigate("/");
+		}
+	}, [user]);
+
+	useEffect(() => {
+		// mounts (render to DOM)
+		const q = query(collection(db, "meeting-dates"));
+		const unsub = onSnapshot(q, (snap) => {
+			if (snap.docs) {
+				const array = snap.docs.map((doc) => {
+					return {
+						id: doc.id,
+						title: doc.get("title"),
+						start: doc.get("start").toDate(),
+						end: doc.get("end").toDate(),
+					};
+				});
+				setAllEvent([...array]);
+			}
+		});
+		return unsub
+	}, []);
 
 	const handleAddEvent = () => {
 		// push the new event to the allEvent array
-		setAllEvent([...allEvent, newEvent]);
-		addDoc(collection(db,"meeting-dates"), newEvent)
+		//setAllEvent([...allEvent, newEvent]);
+		addDoc(collection(db, "meeting-dates"), newEvent);
 	};
-
-	useEffect(()=>{
-		//mounts
-	})
 
 	return (
 		<div>
