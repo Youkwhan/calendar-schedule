@@ -25,14 +25,20 @@ const Navbar = () => {
 
 				{user?.displayName ? (
 					<>
-						<Link className="navlink" to="/contact">Contact</Link>
-					<Link className="navlink" to="/account">{user.displayName}</Link>
-					<button className="btn btn-danger btn-lg" onClick={handleSignOut}>
-						LOGOUT
-					</button>
+						<Link className="navlink" to="/account">
+							{user.displayName}
+						</Link>
+						<Link className="navlink" to="/contact">
+							Contact
+						</Link>
+						<button className="btn btn-danger btn-lg" onClick={handleSignOut}>
+							LOGOUT
+						</button>
 					</>
 				) : (
-					<Link className="navlink" to="/signin">SIGNIN</Link>
+					<Link className="navlink" to="/signin">
+						SIGNIN
+					</Link>
 				)}
 			</div>
 		</div>
