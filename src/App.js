@@ -8,6 +8,7 @@ import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Protected from "./components/Protected";
 import Contact from "./components/Contact";
+import VideoCall from "./components/VideoCall"
 import "./App.css";
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 							</Protected>
 						}
 					/>
+					<Route path="/videocall" element={<VideoCall />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
