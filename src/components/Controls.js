@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useClient } from "./Settings";
-import { Grid, Button, Icon } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import MicIcon from "@material-ui/icons/Mic";
 import MicOffIcon from "@material-ui/icons/MicOff";
 import VideocamIcon from "@material-ui/icons/Videocam";
@@ -18,14 +18,14 @@ export default function Controls(props) {
       setTrackState((ps) => {
         return { ...ps, audio: !ps.audio };
       });
-    }
-    if (type === "video") {
+    } else if (type === "video") {
       await tracks[1].setEnabled(!trackState.video);
       setTrackState((ps) => {
         return { ...ps, video: !ps.video };
       });
     }
   };
+
   const leaveChannel = async () => {
     await client.leave();
     client.removeAllListeners();
@@ -34,6 +34,7 @@ export default function Controls(props) {
     setStart(false);
     setInCall(false);
   };
+
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item>
@@ -51,19 +52,18 @@ export default function Controls(props) {
           color={trackState.video ? "primary" : "secondary"}
           onClick={() => mute("video")}
         >
-          {trackState.audio ? <VideocamIcon /> : <VideocamOffIcon />}
+          {trackState.video ? <VideocamIcon /> : <VideocamOffIcon />}
         </Button>
       </Grid>
       <Grid item>
-        <Grid item>
-          <Button
-            variant="contained"
-            color={trackState.video ? "primary" : "secondary"}
-            onClick={() => leaveChannel()}
-          >
-            Leave <ExitToAppIcon />
-          </Button>
-        </Grid>
+        <Button
+          variant="contained"
+          color="default"
+          onClick={() => leaveChannel()}
+        >
+          Leave
+          <ExitToAppIcon />
+        </Button>
       </Grid>
     </Grid>
   );
