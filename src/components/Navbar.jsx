@@ -28,6 +28,9 @@ const Navbar = () => {
 						<Link className="navlink" to="/account">
 							{user.displayName}
 						</Link>
+						<Link className="navlink" to="/video">
+							VideoChat
+						</Link>
 						<Link className="navlink" to="/contact">
 							Contact
 						</Link>

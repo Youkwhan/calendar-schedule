@@ -8,6 +8,7 @@ import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 import Protected from "./components/Protected";
 import Contact from "./components/Contact";
+import VideoChat from "./components/VideoChat";
 import "./App.css";
 function App() {
 	return (
@@ -26,6 +27,7 @@ function App() {
 						}
 					/>
 					<Route path="/contact" element={<Contact />} />
+          <Route path="/video" element={<VideoChat />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</AuthContextProvider>
