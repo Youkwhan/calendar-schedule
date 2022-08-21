@@ -25,7 +25,8 @@ const Navbar = () => {
 
 				{user?.displayName ? (
 					<>
-						<Link className="navlink" to="/contact">Contact</Link>
+						<Link className="navlink" to="/contact">Email</Link>
+						<Link className="navlink" to="/video">Video Call</Link>
 					<Link className="navlink" to="/account">{user.displayName}</Link>
 					<button className="btn btn-danger btn-lg" onClick={handleSignOut}>
 						LOGOUT
