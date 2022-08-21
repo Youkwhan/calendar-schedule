@@ -1,0 +1,12 @@
+#full-size {
+	height: 80%;
+	width: 100%;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+}
+
+.video-title {
+	text-align: center;
+   margin-bottom: 20px;
+}
